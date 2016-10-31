@@ -1,0 +1,17 @@
+{
+  "name": "myApp-contactus",
+  "version": "1.0.0",
+  "description": "express and jade usage",
+  "main": "app.js",
+  "scripts": {
+    "test": "testing"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+	"body-parser":"*",
+	"express":"*",
+	"jade":"*",
+	"nodemailer":"*"
+  }
+}

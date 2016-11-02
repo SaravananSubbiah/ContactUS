@@ -18,12 +18,17 @@ app.get('/', function(req,res){
 });
 
 app.get('/about', function(req,res){
-	res.render('about');
+	console.log(res.render('about'));
 });
 
 app.get('/contact', function(req,res){
 	res.render('contact');
 });
+
+var jade = require('jade'),
+    locals = {name: "Saravanan"},
+    html   = jade.renderFile('views/emailTemplate.jade', locals);
+//console.log(html);
 
 app.post('/contact/send', function(req,res){
 	 // Not the movie transporter!
@@ -45,7 +50,7 @@ app.post('/contact/send', function(req,res){
 	    to: 'abini.sara2001@gmail.com', // list of receivers
 	    subject: 'Email Example through nodejs', // Subject line
 	    //text: 'text' //, // plaintext body
-	    html: '<b>Hello world ✔ Hi Naga bagu unnara</b>' // You can choose to send an HTML body instead
+	    html: html // You can choose to send an HTML body instead
 	};
 
 	transporter.sendMail(mailOptions, function(error, info){

@@ -27,21 +27,25 @@ app.get('/contact', function(req,res){
 
 app.post('/contact/send', function(req,res){
 	 // Not the movie transporter!
-    var transporter = nodemailer.createTransport({
+	var smtpTransport = require('nodemailer-smtp-transport');
+    var transporter = nodemailer.createTransport(smtpTransport({
         service: 'Gmail',
         auth: {
-            user: 'example@gmail.com', // Your email id
-            pass: 'password' // Your password
-        }
-    })
-
-
+            user: 'abini.sara2001@gmail.com', // Your email id
+            pass: 'Micron@123' // Your password
+        },
+		tls: { rejectUnauthorized: false }
+    }));
+	// To send mails the two settings we have made
+		//1. tls property added to the transporter constructor
+		//2. The gmail account setting has been changed [risky] -Access for less secure apps : Turn on.
+		//    https://www.google.com/settings/security/lesssecureapps
 	var mailOptions = {
-	    from: 'cheershema@gmail.com>', // sender address
+	    from: 'abini.sara2001@gmail.com', // sender address
 	    to: 'abini.sara2001@gmail.com', // list of receivers
 	    subject: 'Email Example through nodejs', // Subject line
-	    text: 'text' //, // plaintext body
-	    // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
+	    //text: 'text' //, // plaintext body
+	    html: '<b>Hello world ✔ Hi Naga bagu unnara</b>' // You can choose to send an HTML body instead
 	};
 
 	transporter.sendMail(mailOptions, function(error, info){
